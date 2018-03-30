@@ -7,6 +7,7 @@ using EventsBot.Extensions;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 using Microsoft.Cognitive.LUIS;
+using System.Configuration;
 
 namespace EventsBot.Dialogs.Framework
 {
@@ -48,7 +49,19 @@ namespace EventsBot.Dialogs.Framework
                 LuisResult luisResult = null;
                 await context.Activity.DoWithTyping(async () =>
                 {
-                    var luisClient = new LuisClient("4044a5bc-2982-45aa-958d-ef5500d57f8b", "4445ad2aee3b49748bd0c74758cced98");
+                    var luisId = ConfigurationManager.AppSettings["luisId"];
+                    var luisKey = ConfigurationManager.AppSettings["luisKey"];
+
+                    if (string.IsNullOrEmpty(luisId))
+                    {
+                        throw new Exception(@"populate appsetting <add key=""luisId"" value=""""/>");
+                    }
+                    if (string.IsNullOrEmpty(luisKey))
+                    {
+                        throw new Exception(@"populate appsetting <add key=""luisKey"" value=""""/>");
+                    }
+
+                    var luisClient = new LuisClient(luisId, luisKey);
 
                     luisResult = await luisClient.Predict(msg);
                 });

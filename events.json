@@ -1,0 +1,114 @@
+{
+  "luis_schema_version": "2.2.0",
+  "versionId": "0.1",
+  "name": "events",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "discover"
+    },
+    {
+      "name": "None"
+    },
+    {
+      "name": "register"
+    }
+  ],
+  "entities": [],
+  "composites": [],
+  "closedLists": [
+    {
+      "name": "event",
+      "subLists": [
+        {
+          "canonicalForm": "introduction to bot framework",
+          "list": [
+            "bot framework",
+            "bot framework",
+            "introduction to bot framework"
+          ]
+        },
+        {
+          "canonicalForm": "introduction to sharepoint",
+          "list": [
+            "sharepoint",
+            "sharepoint"
+          ]
+        },
+        {
+          "canonicalForm": "Glasgow User Group - TFS",
+          "list": []
+        }
+      ]
+    }
+  ],
+  "regex_entities": [],
+  "bing_entities": [
+    "datetimeV2"
+  ],
+  "model_features": [],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "add me to bot framework registration",
+      "intent": "register",
+      "entities": []
+    },
+    {
+      "text": "can i register for bot framework",
+      "intent": "register",
+      "entities": []
+    },
+    {
+      "text": "do you have any events in april",
+      "intent": "discover",
+      "entities": []
+    },
+    {
+      "text": "do you have any events?",
+      "intent": "discover",
+      "entities": []
+    },
+    {
+      "text": "i'd like to register for introduction to bot framework",
+      "intent": "register",
+      "entities": []
+    },
+    {
+      "text": "register for glasgow user group - tfs",
+      "intent": "register",
+      "entities": []
+    },
+    {
+      "text": "register for sharepoint",
+      "intent": "register",
+      "entities": []
+    },
+    {
+      "text": "register me for sharepoint",
+      "intent": "register",
+      "entities": []
+    },
+    {
+      "text": "what events are in june?",
+      "intent": "discover",
+      "entities": []
+    },
+    {
+      "text": "what events are you running?",
+      "intent": "discover",
+      "entities": []
+    },
+    {
+      "text": "which events are running in june?",
+      "intent": "discover",
+      "entities": []
+    },
+    {
+      "text": "which events can i go to",
+      "intent": "discover",
+      "entities": []
+    }
+  ]
+}
