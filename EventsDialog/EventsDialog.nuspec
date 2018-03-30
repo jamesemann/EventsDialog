@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
-    <title>$title$</title>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
-    <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
-    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
-    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <id>EventsDialog</id>
+    <version>0.2.0</version>
+    <title>EventsDialog</title>
+    <authors>James Mann</authors>
+    <owners>James Mann</owners>
+    <projectUrl>https://github.com/jamesemann/EventsDialog</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <description>Events template for Microsoft Bot Framework chatbots.  Currently supports dicovering events (e.g. from api.meetup.com) and registering for those events.</description>
     <copyright>Copyright 2018</copyright>
-    <tags>Tag1 Tag2</tags>
+    <tags>bot framework botframework</tags>
   </metadata>
+  <files>
+    <file src="bin\Release\EventsDialog.dll" target="lib\net46\EventsDialog.dll" />
+  </files>
 </package>
