@@ -4,6 +4,17 @@ https://www.nuget.org/packages/EventsDialog/
 
 ## Usage
 
+Before getting started. Deploy the luis.ai model from https://github.com/jamesemann/EventsDialog/blob/master/events.json to your luis.ai subscription.  Follow the instructions here-->https://docs.microsoft.com/en-us/azure/cognitive-services/luis/create-new-app#import-new-app if you need any help with this step.
+
+Once you have your model, create a new bot framework app. You need to add the following appSettings to your bot framework app. You can get both of these from luis.ai after you have imported the model:
+
+```
+<add key="luisId" value="<YOUR LUIS ID>" />
+<add key="luisKey" value="<YOUR LUIS KEY>" />
+```
+
+Now you can install the NuGet package:
+
 ```
 Install-Package EventsDialog
 ```
