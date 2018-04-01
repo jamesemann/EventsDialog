@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using EventsBot.Interfaces;
+using EventsDialog.Interfaces;
 using Microsoft.Bot.Builder.Dialogs;
 
-namespace EventsBot.Dialogs.ThirdParty.Null
+namespace EventsDialog.Framework
 {
     public class NullRegistrationDialog : EventRegistrationDialog
     {

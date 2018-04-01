@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>EventsDialog.Meetup</id>
+    <version>0.2.0</version>
+    <title>EventsDialog.Meetup</title>
+    <authors>James Mann</authors>
+    <owners>James Mann</owners>
+    <projectUrl>https://github.com/jamesemann/EventsDialog</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Connect Microsoft Bot Framework to Meetup API.</description>
+    <copyright>Copyright 2018</copyright>
+    <tags>bot framework botframework meetup dialog events</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\EventsDialog.Meetup.dll" target="lib\net46\EventsDialog.Meetup.dll" />
+  </files>
+</package>

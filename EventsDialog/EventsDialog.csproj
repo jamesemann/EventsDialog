@@ -119,7 +119,7 @@
     <Compile Include="Extensions\ActivityExtensions.cs" />
     <Compile Include="Extensions\CardExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Extensions\TestExtensions.cs" />
+    <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Framework\DiscoverDialog.cs" />
     <Compile Include="Framework\EventsBotService.cs" />
     <Compile Include="Framework\EventsDialog.cs" />
@@ -132,7 +132,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="EventsDialog.0.1.0.nupkg" />
     <None Include="EventsDialog.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>

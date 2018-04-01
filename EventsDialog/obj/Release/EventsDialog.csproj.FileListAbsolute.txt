@@ -115,7 +115,6 @@ C:\Users\james\Source\Repos\EventsBot\EventsDialog.Public\EventsDialog\bin\Relea
 C:\Users\james\Source\Repos\EventsBot\EventsDialog.Public\EventsDialog\bin\Release\pt-BR\Microsoft.Bot.Builder.resources.dll
 C:\Users\james\Source\Repos\EventsBot\EventsDialog.Public\EventsDialog\bin\Release\ru\Microsoft.Bot.Builder.resources.dll
 C:\Users\james\Source\Repos\EventsBot\EventsDialog.Public\EventsDialog\bin\Release\zh-hans\Microsoft.Bot.Builder.resources.dll
-C:\Users\james\Source\Repos\EventsBot\EventsDialog.Public\EventsDialog\obj\Release\EventsDialog.csprojResolveAssemblyReference.cache
 C:\Users\james\Source\Repos\EventsBot\EventsDialog.Public\EventsDialog\obj\Release\EventsDialog.csproj.CoreCompileInputs.cache
 C:\Users\james\Source\Repos\EventsBot\EventsDialog.Public\EventsDialog\obj\Release\EventsDialog.dll
 C:\Users\james\Source\Repos\EventsBot\EventsDialog.Public\EventsDialog\obj\Release\EventsDialog.pdb

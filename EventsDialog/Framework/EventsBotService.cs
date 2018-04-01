@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using EventsBot.Dialogs.ThirdParty.Null;
-using EventsBot.Interfaces;
 
-namespace EventsBot.Dialogs.Framework
+namespace EventsDialog.Framework
 {
     public class EventsBotServiceAttribute : Attribute
     {   

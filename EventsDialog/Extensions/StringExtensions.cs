@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
 using Microsoft.Recognizers.Text.DateTime;
 
-namespace EventsBot.Extensions
+namespace EventsDialog.Extensions
 {
     public static class StringExtensions
     {

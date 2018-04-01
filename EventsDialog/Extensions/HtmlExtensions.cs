@@ -1,8 +1,8 @@
 ﻿using HtmlAgilityPack;
 
-namespace EventsBot.Extensions
+namespace EventsDialog.Extensions
 {
-    public static class TestExtensions
+    public static class HtmlExtensions
     {
         public static string StripHtml(this string value)
         {

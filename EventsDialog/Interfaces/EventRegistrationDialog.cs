@@ -2,12 +2,14 @@
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder.Dialogs;
 
-namespace EventsBot.Interfaces
+namespace EventsDialog.Interfaces
 {
     [Serializable]
     public abstract class EventRegistrationDialog : IDialog<object>
     {
         public string EventId { get; set; }
+
+        public bool RegistrationSupported { get; set; }
 
         public abstract Task RegisterForEventListingAsync(IDialogContext context, string eventListingId);
         

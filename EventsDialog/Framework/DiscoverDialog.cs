@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EventsBot.Dialogs;
 using EventsBot.Extensions;
+using EventsDialog.Extensions;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
-namespace EventsBot.Dialogs
+namespace EventsDialog.Framework
 {
     [Serializable]
     public class DiscoverDialog : IDialog<object>

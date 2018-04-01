@@ -1,4 +1,4 @@
-﻿namespace EventsBot.Interfaces
+﻿namespace EventsDialog.Interfaces
 {
     public class EventListing
     {
@@ -6,5 +6,6 @@
         public string Title { get; set; }
         public string Summary { get; set; }
         public string Image { get; set; }
+        public bool RegistrationSupported { get; set; }
     }
 }

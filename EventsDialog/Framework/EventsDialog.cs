@@ -8,6 +8,8 @@ using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 using Microsoft.Cognitive.LUIS;
 using System.Configuration;
+using EventsDialog.Extensions;
+using EventsDialog.Framework;
 
 namespace EventsBot.Dialogs.Framework
 {

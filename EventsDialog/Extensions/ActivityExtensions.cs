@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Bot.Connector;
 
-namespace EventsBot.Extensions
+namespace EventsDialog.Extensions
 {
     public static class ActivityExtensions
     {
