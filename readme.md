@@ -1,6 +1,11 @@
 # EventsDialog
-Events template for Microsoft Bot Framework chatbots.  Currently supports discovering events (e.g. from api.meetup.com) and registering for those events.
+
+EventsDialog provides a simple template to quickly allow developers to connect users to events (e.g. on Meetup.com).  It will recognise the users intent, extracting dates and disambiguating where necessary.
+
+It's implemented as a template for Microsoft Bot Framework chatbots.  
+Currently supports discovering events and registering for those events.
 https://www.nuget.org/packages/EventsDialog/
+
 
 ## Getting started
 
