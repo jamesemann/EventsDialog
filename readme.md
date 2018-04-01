@@ -2,9 +2,9 @@
 Events template for Microsoft Bot Framework chatbots.  Currently supports discovering events (e.g. from api.meetup.com) and registering for those events.
 https://www.nuget.org/packages/EventsDialog/
 
-## Usage
+## Getting started
 
-Before getting started. Deploy the luis.ai model from https://github.com/jamesemann/EventsDialog/blob/master/events.json to your luis.ai subscription.  Follow the instructions here-->https://docs.microsoft.com/en-us/azure/cognitive-services/luis/create-new-app#import-new-app if you need any help with this step.
+First, deploy the luis.ai model from https://github.com/jamesemann/EventsDialog/blob/master/events.json to your luis.ai subscription.  Follow the instructions here-->https://docs.microsoft.com/en-us/azure/cognitive-services/luis/create-new-app#import-new-app if you need any help with this step.
 
 Once you have your model, create a new bot framework app. You need to add the following appSettings to your bot framework app. You can get both of these from luis.ai after you have imported the model:
 
@@ -21,19 +21,62 @@ Install-Package EventsDialog
 
 EventsDialog can provide event discovery and event registration by use of two components provided by you.
 
-### Event discovery
+
+## Event discovery/registration using pre-built connectors
+
+To use pre-built discovery/registration connectors, you follow a simple process.  This example shows you how to add the Meetup connector.
+
+### Install the connector
+
+```
+Install-Package EventsDialog.Meetup
+```
+
+### Add your EventsDialog
+
+To query Meetup, create a dialog that subclasses `EventsDialog` and add the `EventsBotService` attribute.  Point the attribute to the Meetup event discovery class:
+
+```
+using EventsDialog.Dialogs.Framework;
+using EventsDialog.Dialogs.Meetup;
+using System;
+
+namespace EventsBot.Dialogs
+{
+    [Serializable]
+    [EventsBotService(typeof(MeetupEventDiscoveryService))]
+    public class RootDialog : EventsDialog
+    {
+    }
+}
+```
+
+### Add any connector-specific configuration
+
+The Meetup connector requires an API key (get from https://www.meetup.com/meetup_api/) and a Group Name URL (the canonical name of the Meetup group).  Add them to your appSettings:
+
+```
+<add key="meetupKey" value="<YOUR MEETUP KEY>" />
+<add key="meetupGroupUrl" value="<YOUR MEETUP GROUP URL>" />
+```
+
+You are now ready to test it!
+
+### Event discovery/registration using your own connectors
+
+If you want to connect to your own events system, then you can do this by creating your own connector providing event discovery and optionally event registration.
 
 To support event discovery, implement `EventDiscoveryService`. This interface requires one method which returns a set of `EventListing` objects. You can do whatever API/DB lookup you need here.  
 
 Here's a sample fake service:
 
 ```
-using EventsBot.Interfaces;
+using EventsDialog.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace EventsBot.Dialogs
+namespace EventsDialog.Dialogs.Fake
 {
     public class FakeEventDiscoveryService : EventDiscoveryService
     {
@@ -57,11 +100,11 @@ To support event registration, subclass `EventRegistrationDialog`. This abstract
 ```
 using System;
 using System.Threading.Tasks;
-using EventsBot.Interfaces;
+using EventsDialog.Interfaces;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
-namespace EventsBot.Dialogs.ThirdParty.Meetup
+namespace EventsDialog.Dialogs.Fake
 {
     [Serializable]
     public class FakeRegistrationDialog : EventRegistrationDialog
@@ -87,11 +130,11 @@ namespace EventsBot.Dialogs.ThirdParty.Meetup
 Once you have created your event discovery and (optionally) event registration. You now just need to wire everything up.  To do that, just subclass `EventsDialog` and add the `EventsBotService` attribute.  Point the attribute to your event discovery/registration classes.  Here's a sample:
 
 ```
-using EventsBot.Dialogs.Framework;
-using EventsBot.Dialogs.ThirdParty.Meetup;
+using EventsDialog.Dialogs.Framework;
+using EventsDialog.Dialogs.Fake;
 using System;
 
-namespace EventsBot.Dialogs
+namespace EventsDialog.Dialogs
 {
     [Serializable]
     [EventsBotService(typeof(FakeEventDiscoveryService), typeof(FakeRegistrationDialog))]
