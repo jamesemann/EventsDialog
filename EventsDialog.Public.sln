@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsDialog", "EventsDialog\EventsDialog.csproj", "{5362C62E-1530-43EE-A966-157B215B4F56}"
 EndProject
@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsDialog.Meetup", "EventsDialog.Meetup\EventsDialog.Meetup.csproj", "{00C40283-6C1E-4D60-BAFC-017897A54868}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{D9D8D92D-4154-48B3-A7C1-CD093019967D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsDialog.SampleBot", "EventsDialog.SampleBot\EventsDialog.SampleBot.csproj", "{1689D717-57DD-429B-9F58-9C5EF443872A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +31,16 @@ Global
 		{00C40283-6C1E-4D60-BAFC-017897A54868}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00C40283-6C1E-4D60-BAFC-017897A54868}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00C40283-6C1E-4D60-BAFC-017897A54868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1689D717-57DD-429B-9F58-9C5EF443872A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1689D717-57DD-429B-9F58-9C5EF443872A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1689D717-57DD-429B-9F58-9C5EF443872A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1689D717-57DD-429B-9F58-9C5EF443872A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1689D717-57DD-429B-9F58-9C5EF443872A} = {D9D8D92D-4154-48B3-A7C1-CD093019967D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2BACB2B-4EC0-426E-B4F6-A0F2477EA317}
