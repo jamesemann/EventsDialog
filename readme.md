@@ -27,7 +27,7 @@ Install-Package EventsDialog
 EventsDialog can provide event discovery and event registration by use of two components provided by you.
 
 
-## Event discovery/registration using pre-built connectors
+## Option 1: Event discovery/registration using pre-built connectors
 
 To use pre-built discovery/registration connectors, you follow a simple process.  This example shows you how to add the Meetup connector.
 
@@ -71,7 +71,7 @@ The Meetup connector requires an API key (get from https://www.meetup.com/meetup
 
 You are now ready to test it!
 
-### Event discovery/registration using your own connectors
+### Option 2: Event discovery/registration using your own connectors
 
 If you want to connect to your own events system, then you can do this by creating your own connector providing event discovery and optionally event registration.
 
