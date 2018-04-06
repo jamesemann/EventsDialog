@@ -93,19 +93,7 @@ namespace EventsDialog.Meetup
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var evt = JObject.Parse(await response.Content.ReadAsStringAsync());
-                    var eventName = evt.SelectToken("$.event.name")?.Value<string>();
-                    var venueName = evt.SelectToken("$.venue.name")?.Value<string>();
-                    var venueAddress1 = evt.SelectToken("$.venue.address_1")?.Value<string>();
-                    var venueCity = evt.SelectToken("$.venue.city")?.Value<string>();
-                    var venueZip = evt.SelectToken("$.venue.zip")?.Value<string>();
-                    var venueCountry = evt.SelectToken("$.venue.country")?.Value<string>();
-                    var lat = evt.SelectToken("$.venue.lat")?.Value<decimal>();
-                    var lon = evt.SelectToken("$.venue.lon")?.Value<decimal>();
-
-                    var authMessage = context.MakeMessage();
-                    authMessage.Attachments.Add(await CardsUtility.CreateMapCard(eventName, venueName, venueAddress1, venueCity, venueZip, venueCountry, lat, lon));
-                    await context.PostAsync(authMessage);
+                    await context.SayAsync("Thank you for registering. You will shortly receive confirmation from Meetup.com.");
                 }
                 else
                 {
