@@ -39,7 +39,7 @@ Install-Package EventsDialog.Meetup
 
 ### Add your EventsDialog
 
-To query Meetup, create a dialog that subclasses `EventsDialog` and add the `EventsBotService` attribute.  Point the attribute to the Meetup event discovery class:
+To query Meetup, create a dialog that subclasses `EventsDialog` and add the `EventsBotService` attribute.  Point the attribute to the Meetup event discovery class and meetup registration dialog:
 
 ```
 using EventsDialog.Dialogs.Framework;
@@ -49,7 +49,7 @@ using System;
 namespace EventsBot.Dialogs
 {
     [Serializable]
-    [EventsBotService(typeof(MeetupEventDiscoveryService))]
+    [EventsBotService(typeof(MeetupEventDiscoveryService), typeof(MeetupRegistrationDialog))]
     public class RootDialog : EventsDialog
     {
     }
@@ -58,11 +58,16 @@ namespace EventsBot.Dialogs
 
 ### Add any connector-specific configuration
 
-The Meetup connector requires an API key (get from https://www.meetup.com/meetup_api/) and a Group Name URL (the canonical name of the Meetup group).  Add them to your appSettings:
+The Meetup connector requires an API key (get from https://www.meetup.com/meetup_api/), a Group Name URL (the canonical name of the Meetup group), OAuth client ID and secret (get them from https://secure.meetup.com/meetup_api/oauth_consumers/), an Azure table storage account to store users auth/refresh tokens, and a google maps API key if you want to show the location on a map.  Add them to your appSettings:
 
 ```
 <add key="meetupKey" value="<YOUR MEETUP KEY>" />
 <add key="meetupGroupUrl" value="<YOUR MEETUP GROUP URL>" />
+<add key="meetupClientId" value="<YOUR MEETUP OAUTH CLIENT ID>" />
+<add key="meetupClientSecret" value="<YOUR MEETUP OAUTH CLIENT SECRET>" />
+<add key="meetupRedirectUrl" value="<YOUR PUBLIC BOT APPLICATION URL>/api/auth"/>
+<add key="meetupTableStorageConnectionString" value="<YOUR AZURE STORAGE CONNECTION STRING>" />
+<add key="meetupGoogleMapsApiKey" value="<YOUR GOOGLE MAPS API KEY>" />
 ```
 
 You are now ready to test it!

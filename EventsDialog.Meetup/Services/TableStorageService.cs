@@ -6,11 +6,11 @@ using Microsoft.WindowsAzure.Storage.Table;
 
 namespace EventsDialog.Meetup
 {
-    public class TableStorage
+    public class TableStorageService
     {
         private static string _storageConnectionString;
 
-        static TableStorage()
+        static TableStorageService()
         {
             _storageConnectionString = ConfigurationManager.AppSettings["meetupTableStorageConnectionString"];
 

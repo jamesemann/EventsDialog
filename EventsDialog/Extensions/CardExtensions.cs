@@ -18,7 +18,7 @@ namespace EventsBot.Extensions
                 cardButtons.Add(plButton);
             }
 
-            var plCard1 = new HeroCard {Title = eventListing.Title, Subtitle = eventListing.Summary, Images = cardImages1, Buttons = cardButtons};
+            var plCard1 = new HeroCard {Title = eventListing.Title, Subtitle = eventListing.Subtitle, Text = eventListing.Summary, Images = cardImages1, Buttons = cardButtons};
             return plCard1.ToAttachment();
         }
     }

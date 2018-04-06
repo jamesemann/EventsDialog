@@ -10,6 +10,7 @@ using EventsDialog.Meetup.Controllers;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace EventsDialog.Meetup
 {
@@ -19,7 +20,7 @@ namespace EventsDialog.Meetup
         public override async Task RegisterForEventListingAsync(IDialogContext context, string eventListingId)
         {
             var redirectUrl = ConfigurationManager.AppSettings["meetupRedirectUrl"];
-            var clientId = ConfigurationManager.AppSettings["meetupCliendId"];
+            var clientId = ConfigurationManager.AppSettings["meetupClientId"];
             var groupUrlName = ConfigurationManager.AppSettings["meetupGroupUrl"];
 
             if (string.IsNullOrEmpty(redirectUrl))
@@ -28,7 +29,7 @@ namespace EventsDialog.Meetup
             }
             if (string.IsNullOrEmpty(clientId))
             {
-                throw new Exception(@"populate appsetting <add key=""meetupCliendId"" value=""""/>");
+                throw new Exception(@"populate appsetting <add key=""meetupClientId"" value=""""/>");
             }
             if (string.IsNullOrEmpty(groupUrlName))
             {
@@ -36,29 +37,39 @@ namespace EventsDialog.Meetup
             }
 
             var userId = context.Activity.Recipient.Id;
-            var existing = TableStorage.RetrieveByUserId(userId);
-            
+            var existing = TableStorageService.RetrieveByUserId(userId);
+
             if (existing == null)
             {
-                await context.SayAsync($"https://secure.meetup.com/oauth2/authorize?scope=rsvp&client_id={clientId}&response_type=code&redirect_uri={redirectUrl}?userId={userId}");
-                
+                var authMessage = context.MakeMessage();
+                authMessage.Attachments.Add(await CardsUtility.CreateAuthCard(clientId, redirectUrl, userId));
+                await context.PostAsync(authMessage);
+
                 // TODO wait for auth flow to complete
-                while (existing == null)
+                var start = DateTime.Now;
+                while (existing == null && (DateTime.Now - start).TotalSeconds < 120)
                 {
                     Thread.Sleep(5000);
-                    existing = TableStorage.RetrieveByUserId(userId);
+                    existing = TableStorageService.RetrieveByUserId(userId);
                 }
                 // end TODO
-                
-                await Rsvp(context, existing.AccessToken, groupUrlName, eventListingId);
+
+                if (existing != null)
+                {
+                    await Rsvp(context, existing.AccessToken, groupUrlName, eventListingId);
+                }
+                else
+                {
+                    await context.SayAsync("Timed out waiting for Meetup.com authentication to complete. Please try again.");
+                }
                 context.Done<object>(new object());
             }
 
             // subtract 1 hour to ensure is an overlap
             else if (existing.ExpiryDateTime <= DateTime.Now.AddMinutes(-60))
             {
-                var refreshToken = await AuthController.GetRefreshToken(userId, existing.RefreshToken);
-                TableStorage.InsertOrUpdate(refreshToken);
+                var refreshToken = await OAuthUtility.GetRefreshToken(userId, existing.RefreshToken);
+                TableStorageService.InsertOrUpdate(refreshToken);
 
                 await Rsvp(context, existing.AccessToken, groupUrlName, eventListingId);
                 context.Done<object>(new object());
@@ -76,17 +87,29 @@ namespace EventsDialog.Meetup
             {
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
 
-                var uriBuilder = new UriBuilder("https", "api.meetup.com", 443, $"/{urlName}/events/{eventId}/rsvps","?response=yes");
-                
+                var uriBuilder = new UriBuilder("https", "api.meetup.com", 443, $"/{urlName}/events/{eventId}/rsvps", "?response=yes");
+
                 var response = await httpClient.PostAsync(uriBuilder.Uri, new FormUrlEncodedContent(new List<KeyValuePair<string, string>>()));
 
                 if (response.IsSuccessStatusCode)
                 {
-                    await context.SayAsync("You have been registered");
+                    var evt = JObject.Parse(await response.Content.ReadAsStringAsync());
+                    var eventName = evt.SelectToken("$.event.name")?.Value<string>();
+                    var venueName = evt.SelectToken("$.venue.name")?.Value<string>();
+                    var venueAddress1 = evt.SelectToken("$.venue.address_1")?.Value<string>();
+                    var venueCity = evt.SelectToken("$.venue.city")?.Value<string>();
+                    var venueZip = evt.SelectToken("$.venue.zip")?.Value<string>();
+                    var venueCountry = evt.SelectToken("$.venue.country")?.Value<string>();
+                    var lat = evt.SelectToken("$.venue.lat")?.Value<decimal>();
+                    var lon = evt.SelectToken("$.venue.lon")?.Value<decimal>();
+
+                    var authMessage = context.MakeMessage();
+                    authMessage.Attachments.Add(await CardsUtility.CreateMapCard(eventName, venueName, venueAddress1, venueCity, venueZip, venueCountry, lat, lon));
+                    await context.PostAsync(authMessage);
                 }
                 else
                 {
-                    throw new Exception($"authentication error {response.StatusCode}: {await response.Content.ReadAsStringAsync()}");
+                    await context.SayAsync($"Authentication error {response.StatusCode}: {await response.Content.ReadAsStringAsync()}");
                 }
             }
         }

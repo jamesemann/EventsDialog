@@ -9,6 +9,7 @@
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NameOfLastUsedPublishProfile>mikecowleydemo - Web Deploy</NameOfLastUsedPublishProfile>
+    <LastActiveSolutionConfig>Release|Any CPU</LastActiveSolutionConfig>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
